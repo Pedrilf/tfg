@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Menus - Casa Javi</title>
+        <title>Administracion - Casa Javi</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap Icons-->
@@ -21,15 +21,23 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="height: 10%;">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="../index.php" style="color: black;">Casa Javi</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0 menu">
-                        <li class="nav-item"><a class="nav-link" href="../admin/admin_reservas.php" style="color: black;">Administrar Reservas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../admin/admin_menus.php" style="color: black;">Añadir Menu</a></li>
-                    </ul>
-                </div>
+                <?php 
+                    session_start();
+                    if (isset($_SESSION["loged"])) {
+                        ?>
+                        <div class="collapse navbar-collapse" id="navbarResponsive">
+                            <ul class="navbar-nav ms-auto my-2 my-lg-0 menu">
+                                <li class="nav-item"><a class="nav-link" href="../admin/admin_reservas.php" style="color: black;">Administrar Reservas</a></li>
+                                <li class="nav-item"><a class="nav-link" href="../admin/admin_menus.php" style="color: black;">Añadir Menu</a></li>
+                                <li class="nav-item"><a class="nav-link" href="../admin/admin_logout.php" style="color: black;">Cerrar Sesion</a></li>
+                            </ul>
+                        </div>
+                        <?php
+                    }
+                ?>
             </div>
         </nav>

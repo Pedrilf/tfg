@@ -1,0 +1,7 @@
+CREATE TABLE usuarios (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `USERNAME` varchar(25) NOT NULL,
+  `PASSWORD` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `username` (`USERNAME`)
+) ENGINE=InnoDB;
