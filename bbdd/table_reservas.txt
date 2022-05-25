@@ -6,4 +6,4 @@ NUM_PERSONAS INT(4),
 CORREO VARCHAR(255),
 TELEFONO VARCHAR(255),
 ESTADO ENUM("Aceptada","Denegada","Pendiente")
-)ENGINE = InnoDB
+)ENGINE = InnoDB;

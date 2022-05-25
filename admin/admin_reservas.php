@@ -13,37 +13,37 @@ if (isset($_REQUEST["filtrar"])) {
     $filtrar = false;
     if ($_REQUEST["idR"] != "") {
         $idReserva = $_REQUEST["idR"];
-        $filtro .= "AND ID_RESERVA = ".$idReserva."";
+        $filtro .= " AND ID_RESERVA = ".$idReserva."";
         $filtrar = true;
     }
     if ($_REQUEST["nom"] != "") {
         $nombre = $_REQUEST["nom"];
-        $filtro .= "AND NOMBRE LIKE '%".$nombre."%'";
+        $filtro .= " AND NOMBRE LIKE '%".$nombre."%'";
         $filtrar = true;
     }
     if ($_REQUEST["fecha"] != "") {
         $fecha = $_REQUEST["fecha"];
-        $filtro .= "AND FECHA = '$fecha'";
+        $filtro .= " AND FECHA = '$fecha'";
         $filtrar = true;
     }
     if ($_REQUEST["NPersonas"] != "") {
         $nPersonas = $_REQUEST["NPersonas"];
-        $filtro .= "AND NUM_PERSONAS = $nPersonas";
+        $filtro .= " AND NUM_PERSONAS = $nPersonas";
         $filtrar = true;
     }
     if ($_REQUEST["email"] != "") {
         $email = $_REQUEST["email"];
-        $filtro .= "AND EMAIL = '$email'";
+        $filtro .= " AND EMAIL = '$email'";
         $filtrar = true;
     }
     if ($_REQUEST["tel"] != "") {
         $telefono = $_REQUEST["tel"];
-        $filtro .= "AND TELEFONO = '$telefono'";
+        $filtro .= " AND TELEFONO = '$telefono'";
         $filtrar = true;
     }
     if ($_REQUEST["estado"] != "") {
         $estado = $_REQUEST["estado"];
-        $filtro .= "AND ESTADO = ".$estado."";
+        $filtro .= " AND ESTADO = ".$estado."";
         $filtrar = true;
     } 
 
@@ -51,7 +51,24 @@ if (isset($_REQUEST["filtrar"])) {
         echo $filtro;
         $sql = $filtro;
     }
-    
+
+}
+
+if (isset($_REQUEST["aceptar"])) {
+    $destination = "minipedri@me.com";
+    $title = "Prueba 1 Correo";
+    $body = "Solicitud de reserva aceptada";
+    $from = "From: minipedri02@gmail.com";
+
+    mail($destination, $title, $body, $from);
+
+} elseif (isset($_REQUEST["aceptar"])) {   
+    $destination = "minipedri@me.com";
+    $title = "Prueba 1 Correo";
+    $body = "Solicitud de reserva cancelada";
+    $from = "From: minipedri02@gmail.com";
+
+    mail($destination, $title, $body, $from);
 }
 
 if (isset($_REQUEST["aceptar"])) {
@@ -64,42 +81,42 @@ if (isset($_REQUEST["aceptar"])) {
     }
     //https://desarrolloweb.com/articulos/969.php
     //https://es.stackoverflow.com/questions/102861/failed-to-connect-to-mailserver
-    $destinatario = "minipedri@me.com"; 
-    $asunto = "Este mensaje es de prueba"; 
-    $cuerpo = ' 
-    <html> 
-    <head> 
-    <title>Prueba de correo</title> 
-    </head> 
-    <body> 
-    <h1>Hola amigos!</h1> 
-    <p> 
-    <b>Bienvenidos a mi correo electrónico de prueba</b>. Estoy encantado de tener tantos lectores. Este cuerpo del mensaje es del artículo de envío de mails por PHP. Habría que cambiarlo para poner tu propio cuerpo. Por cierto, cambia también las cabeceras del mensaje. 
-    </p> 
-    </body> 
-    </html> 
-    '; 
+    // $destinatario = "minipedri@me.com"; 
+    // $asunto = "Este mensaje es de prueba"; 
+    // $cuerpo = ' 
+    // <html> 
+    // <head> 
+    // <title>Prueba de correo</title> 
+    // </head> 
+    // <body> 
+    // <h1>Hola amigos!</h1> 
+    // <p> 
+    // <b>Bienvenidos a mi correo electrónico de prueba</b>. Estoy encantado de tener tantos lectores. Este cuerpo del mensaje es del artículo de envío de mails por PHP. Habría que cambiarlo para poner tu propio cuerpo. Por cierto, cambia también las cabeceras del mensaje. 
+    // </p> 
+    // </body> 
+    // </html> 
+    // '; 
 
-    //para el envío en formato HTML 
-    $headers = "MIME-Version: 1.0\r\n"; 
-    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+    // //para el envío en formato HTML 
+    // $headers = "MIME-Version: 1.0\r\n"; 
+    // $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
 
-    //dirección del remitente 
-    $headers .= "From: Pablo Lapedriza Fernandez <minipedri02@gmail.com>\r\n"; 
+    // //dirección del remitente 
+    // $headers .= "From: Pablo Lapedriza Fernandez <minipedri02@gmail.com>\r\n"; 
 
-    //dirección de respuesta, si queremos que sea distinta que la del remitente 
-    $headers .= "Reply-To: mariano@desarrolloweb.com\r\n"; 
+    // //dirección de respuesta, si queremos que sea distinta que la del remitente 
+    // //$headers .= "Reply-To: mariano@desarrolloweb.com\r\n"; 
 
-    //ruta del mensaje desde origen a destino 
-    $headers .= "Return-path: holahola@desarrolloweb.com\r\n"; 
+    // //ruta del mensaje desde origen a destino 
+    // $headers .= "Return-path: holahola@desarrolloweb.com\r\n"; 
 
-    //direcciones que recibián copia 
-    $headers .= "Cc: maria@desarrolloweb.com\r\n"; 
+    // //direcciones que recibián copia 
+    // $headers .= "Cc: maria@desarrolloweb.com\r\n"; 
 
-    //direcciones que recibirán copia oculta 
-    $headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n"; 
+    // //direcciones que recibirán copia oculta 
+    // $headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n"; 
 
-    mail($destinatario,$asunto,$cuerpo,$headers);
+    // mail($destinatario,$asunto,$cuerpo,$headers);
 }
 
 if (isset($_REQUEST["denegar"])) {
@@ -158,49 +175,49 @@ if (isset($_REQUEST["denegar"])) {
 </div>
 <br><br>
 <div style="overflow:auto; width:90%;margin: auto;">
-<form method="POST">
-    <table class="table table-striped">
-        <tr>
-            <th scope="col">Id Reserva</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Numero Personas</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Estado</th>
-            <th scope="col" colspan="2" style="padding-left: 110px;">Botones</th>
-        </tr>
-        <tr>
-            <?php
-            if ($result = $mysqli->query($sql)) {
-                while ($row = $result->fetch_assoc()) {
-                ?>
-                <tr>
-                    <th scope="row"><?php echo $row["ID_RESERVA"] ?></th> 
-                    <td><?php echo $row["NOMBRE"] ?></td> 
-                    <td><?php echo $row["FECHA"] ?></td> 
-                    <td><?php echo $row["NUM_PERSONAS"] ?> </td> 
-                    <td><?php echo $row["CORREO"] ?></td> 
-                    <td><?php echo $row["TELEFONO"] ?></td> 
-                    <td><?php echo $row["ESTADO"] ?></td>
-                    <?php 
-                        if ($row["ESTADO"] == "Aceptada") {
-                            ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row["ID_RESERVA"]?>'>Denegar</button></td> <?php
-                        } elseif ($row["ESTADO"] == "Denegada") {
-                            ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row["ID_RESERVA"]?>'>Aceptar</button></td> <?php
-                        } else {
-                            ?> <td><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row["ID_RESERVA"]?>'>Aceptar</button></td>
-                            <td><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row["ID_RESERVA"]?>'>Denegar</button></td> <?php
-                        }
-                    ?>
-                </tr>
+    <form method="POST">
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id Reserva</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Numero Personas</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Estado</th>
+                <th scope="col" colspan="2" style="padding-left: 110px;">Botones</th>
+            </tr>
+            <tr>
                 <?php
-                }    
-            }
-            ?>
-        </tr>
-    </table>
-</form>
+                if ($result = $mysqli->query($sql)) {
+                    while ($row = $result->fetch_assoc()) {
+                    ?>
+                    <tr>
+                        <th scope="row"><?php echo $row["ID_RESERVA"] ?></th> 
+                        <td><?php echo $row["NOMBRE"] ?></td> 
+                        <td><?php echo $row["FECHA"] ?></td> 
+                        <td><?php echo $row["NUM_PERSONAS"] ?> </td> 
+                        <td><?php echo $row["CORREO"] ?></td> 
+                        <td><?php echo $row["TELEFONO"] ?></td> 
+                        <td><?php echo $row["ESTADO"] ?></td>
+                        <?php 
+                            if ($row["ESTADO"] == "Aceptada") {
+                                ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row["ID_RESERVA"]?>'>Denegar</button></td> <?php
+                            } elseif ($row["ESTADO"] == "Denegada") {
+                                ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row["ID_RESERVA"]?>'>Aceptar</button></td> <?php
+                            } else {
+                                ?> <td><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row["ID_RESERVA"]?>'>Aceptar</button></td>
+                                <td><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row["ID_RESERVA"]?>'>Denegar</button></td> <?php
+                            }
+                        ?>
+                    </tr>
+                    <?php
+                    }    
+                }
+                ?>
+            </tr>
+        </table>
+    </form>
 </div>
 <?php
     include("../components/footer.php");

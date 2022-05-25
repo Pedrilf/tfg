@@ -20,7 +20,7 @@
     </head>
     <body style="height: 100%;">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="height:10%;">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-light" id="mainNav" style="height:10%;">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="index.php" style="color: black;">Casa Javi</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
