@@ -1,25 +1,18 @@
 <?php
 include("../components/admin_nav.php");
 include('../bbdd/conex.php');
-  
+$bd = new conex();
  if (isset($_POST['login'])) {
   
      $username = $_POST['username'];
      $password = $_POST['password'];
-  
-     $query = $connection->prepare("SELECT * FROM usuarios WHERE USERNAME=:username");
-     $query->bindParam("username", $username, PDO::PARAM_STR);
-     $query->execute();
-  
-     $result = $query->fetch(PDO::FETCH_ASSOC);
-  
-     if (!$result) {
+
+    $sql = "SELECT * FROM usuarios WHERE USERNAME = '$username'";
+     if (!$resultado = $bd->ExecSQL($sql)) {
          echo '<p class="error">Contraseña o usuario incorrectos</p>';
      } else {
-       echo $password;
-       echo "<br>";
-       echo $result['PASSWORD'];
-         if ($password == $result['PASSWORD']) {
+       $row = $bd->SigReg($resultado);
+         if ($password == $row->PASSWORD) {
              $_SESSION['loged'] = true;
              header("Location: admin_reservas.php");
          } else {

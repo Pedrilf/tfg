@@ -1,6 +1,7 @@
 <?php
 include("components/nav.php");
 include("bbdd/conex.php");
+$bd = new conex();
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script>
@@ -72,7 +73,7 @@ if (isset($_REQUEST["submit"])) {
     $correo = $_REQUEST["email"];
 
     $sql = "INSERT INTO reservas (NOMBRE,FECHA,NUM_PERSONAS,CORREO,TELEFONO,ESTADO) VALUES ('$nom','$fecha',$numPersonas,'$correo','$numTel','Pendiente')";
-    if (mysqli_query($conn, $sql)) {
+    if ($bd->ExecSQL($sql)) {
         echo '<script>jsFunction();</script>';
     } else {
         echo "Ha habido un problema con la reserva";

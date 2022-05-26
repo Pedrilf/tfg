@@ -1,11 +1,9 @@
 <?php
 include("../components/admin_nav.php");
-// include("../bbdd/conex.php");
 require_once("../bbdd/conex.php");
-$username = "root"; 
-$password = ""; 
-$database = "casajavi"; 
-$mysqli = new mysqli("localhost", $username, $password, $database); 
+
+$bd = new conex();
+
 $sql = "SELECT * FROM reservas WHERE ESTADO = 'Pendiente' ORDER BY FECHA";
 $filtro = "SELECT * FROM reservas WHERE '1=1'";
 
@@ -79,44 +77,6 @@ if (isset($_REQUEST["aceptar"])) {
     } else {
         echo "Ha ocurrido un problema";
     }
-    //https://desarrolloweb.com/articulos/969.php
-    //https://es.stackoverflow.com/questions/102861/failed-to-connect-to-mailserver
-    // $destinatario = "minipedri@me.com"; 
-    // $asunto = "Este mensaje es de prueba"; 
-    // $cuerpo = ' 
-    // <html> 
-    // <head> 
-    // <title>Prueba de correo</title> 
-    // </head> 
-    // <body> 
-    // <h1>Hola amigos!</h1> 
-    // <p> 
-    // <b>Bienvenidos a mi correo electrónico de prueba</b>. Estoy encantado de tener tantos lectores. Este cuerpo del mensaje es del artículo de envío de mails por PHP. Habría que cambiarlo para poner tu propio cuerpo. Por cierto, cambia también las cabeceras del mensaje. 
-    // </p> 
-    // </body> 
-    // </html> 
-    // '; 
-
-    // //para el envío en formato HTML 
-    // $headers = "MIME-Version: 1.0\r\n"; 
-    // $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
-
-    // //dirección del remitente 
-    // $headers .= "From: Pablo Lapedriza Fernandez <minipedri02@gmail.com>\r\n"; 
-
-    // //dirección de respuesta, si queremos que sea distinta que la del remitente 
-    // //$headers .= "Reply-To: mariano@desarrolloweb.com\r\n"; 
-
-    // //ruta del mensaje desde origen a destino 
-    // $headers .= "Return-path: holahola@desarrolloweb.com\r\n"; 
-
-    // //direcciones que recibián copia 
-    // $headers .= "Cc: maria@desarrolloweb.com\r\n"; 
-
-    // //direcciones que recibirán copia oculta 
-    // $headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n"; 
-
-    // mail($destinatario,$asunto,$cuerpo,$headers);
 }
 
 if (isset($_REQUEST["denegar"])) {
@@ -168,7 +128,7 @@ if (isset($_REQUEST["denegar"])) {
         </div>
         
         <div style="text-align: center;">
-            <br>
+            <br><br>
             <button class="btn btn-primary" type="submit" name="filtrar">Filtrar</button>
         </div>
     </form>
@@ -189,25 +149,25 @@ if (isset($_REQUEST["denegar"])) {
             </tr>
             <tr>
                 <?php
-                if ($result = $mysqli->query($sql)) {
-                    while ($row = $result->fetch_assoc()) {
-                    ?>
+                if ($resultado = $bd->ExecSQL($sql)) {
+                    while ($row = $bd->SigReg($resultado)) {
+                ?>
                     <tr>
-                        <th scope="row"><?php echo $row["ID_RESERVA"] ?></th> 
-                        <td><?php echo $row["NOMBRE"] ?></td> 
-                        <td><?php echo $row["FECHA"] ?></td> 
-                        <td><?php echo $row["NUM_PERSONAS"] ?> </td> 
-                        <td><?php echo $row["CORREO"] ?></td> 
-                        <td><?php echo $row["TELEFONO"] ?></td> 
-                        <td><?php echo $row["ESTADO"] ?></td>
+                        <th scope="row"><?php echo $row->ID_RESERVA ?></th> 
+                        <td><?php echo $row->NOMBRE ?></td> 
+                        <td><?php echo $row->FECHA ?></td> 
+                        <td><?php echo $row->NUM_PERSONAS ?> </td> 
+                        <td><?php echo $row->CORREO ?></td> 
+                        <td><?php echo $row->TELEFONO ?></td> 
+                        <td><?php echo $row->ESTADO ?></td>
                         <?php 
-                            if ($row["ESTADO"] == "Aceptada") {
-                                ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row["ID_RESERVA"]?>'>Denegar</button></td> <?php
-                            } elseif ($row["ESTADO"] == "Denegada") {
-                                ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row["ID_RESERVA"]?>'>Aceptar</button></td> <?php
+                            if ($row->ESTADO == "Aceptada") {
+                                ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row->ID_RESERVA?>'>Denegar</button></td> <?php
+                            } elseif ($row->ESTADO == "Denegada") {
+                                ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row->ID_RESERVA?>'>Aceptar</button></td> <?php
                             } else {
-                                ?> <td><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row["ID_RESERVA"]?>'>Aceptar</button></td>
-                                <td><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row["ID_RESERVA"]?>'>Denegar</button></td> <?php
+                                ?> <td><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row->ID_RESERVA?>'>Aceptar</button></td>
+                                <td><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row->ID_RESERVA?>'>Denegar</button></td> <?php
                             }
                         ?>
                     </tr>

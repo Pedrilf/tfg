@@ -1,66 +1,36 @@
 <?php
 include("components/nav.php");
-include("bbdd/conex.php");
-$username = "root"; 
-$password = ""; 
-$database = "casajavi"; 
-$mysqli = new mysqli("localhost", $username, $password, $database);
+require_once("bbdd/conex.php");
 
-$sql = "SELECT * FROM eventos ";
+$bd = new conex();
+
+
+$sql = "SELECT * FROM eventos";
+$resultado = $bd->ExecSQL($sql);
+while ($row = $bd->SigReg($resultado)) {
 ?>
-<!-- <section class="py-5">
-  <div class="container px-4 px-lg-6 my-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-8">
-        <h1 class="display-5 fw-bolder">{{ juegos?.nombre }}</h1>
-
-        <img
-          class="card-img-top mb-5"
-          src="assets/img/{{ juegos?.imagen }}"
-          alt="..."
-        />
-
-        <h5>Fecha de lanzamiento: {{ juegos?.fecha_lanzamiento }}</h5>
-        <h5>Plataformas: {{ juegos?.plataforma }}</h5>
-        <h5>Generos: {{ juegos?.genero }}</h5>
-
-        <hr class="divider" />
-
-        <p class="lead">{{ juegos?.descripcion }}</p>
-      </div>
+<br><br>
+<div class="container bcontent" style="margin-top:100px;">
+    <h2><?php echo $row->NOMBRE ?></h2>
+    <hr/>
+    <div class="card" style="width: 100%;">
+        <div class="row no-gutters" style="height:400px;">
+            <div class="col-sm-6">
+                <img class="card-img" src="<?php echo $row->IMAGEN ?>" alt="Suresh Dasari Card" style="height: 400px;">
+            </div>
+            <div class="col-sm-5">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $row->DESC_CORTA ?></h5>
+                    <b><p class="card-text"><?php echo $row->FECHA ?></p></b>
+                    <p class="card-text"><?php echo $row->DESC_LARGA ?></p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</section> -->
-
-                <?php
-                if ($result = $mysqli->query($sql)) {
-                    while ($row = $result->fetch_assoc()) {
-                    ?>
-                    <tr>
-                        <th scope="row"><?php echo $row["ID_RESERVA"] ?></th> 
-                        <td><?php echo $row["NOMBRE"] ?></td> 
-                        <td><?php echo $row["FECHA"] ?></td> 
-                        <td><?php echo $row["NUM_PERSONAS"] ?> </td> 
-                        <td><?php echo $row["CORREO"] ?></td> 
-                        <td><?php echo $row["TELEFONO"] ?></td> 
-                        <td><?php echo $row["ESTADO"] ?></td>
-                        <?php 
-                            if ($row["ESTADO"] == "Aceptada") {
-                                ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row["ID_RESERVA"]?>'>Denegar</button></td> <?php
-                            } elseif ($row["ESTADO"] == "Denegada") {
-                                ?> <td colspan="2" style="padding-left: 100px;"><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row["ID_RESERVA"]?>'>Aceptar</button></td> <?php
-                            } else {
-                                ?> <td><button type="submit" class="btn btn-success" name="aceptar" value='<?php echo $row["ID_RESERVA"]?>'>Aceptar</button></td>
-                                <td><button type="submit" class="btn btn-danger" name="denegar"value='<?php echo $row["ID_RESERVA"]?>'>Denegar</button></td> <?php
-                            }
-                        ?>
-                    </tr>
-                    <?php
-                    }    
-                }
-                ?>
-
-
+</div>
+<br><br>
 <?php
+}
+
 include("components/footer.php");
 ?>
