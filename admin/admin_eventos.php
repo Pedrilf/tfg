@@ -6,7 +6,7 @@ $bd = new conex();
 
 if (isset($_REQUEST["submit"])) {
 
-    $target_dir = "../assets/img/menu/";
+    $target_dir = "../assets/img/eventos/";
     $target_file = $target_dir . basename($_FILES["img"]["name"]);
     $file_name = basename($_FILES["img"]["name"]);
     $uploadOk = 1;
@@ -51,8 +51,12 @@ if (isset($_REQUEST["submit"])) {
         }
     }
 
+    $nombre = $_REQUEST["nom"];
+    $fecha = $_REQUEST["fecha"];
+    $desc_c = $_REQUEST["desc_c"];
+    $desc_l = $_REQUEST["desc_l"];
 
-    $sql = "INSERT INTO menu (IMAGEN) VALUES ('assets/img/eventos$file_name')";
+    $sql = "INSERT INTO eventos (NOMBRE,FECHA,DESC_CORTA,DESC_LARGA,IMAGEN) VALUES ('$nombre', '$fecha', '$desc_c', '$desc_l', 'assets/img/eventos$file_name')";
     
     if ($bd->ExecSQL($sql)) {
         
@@ -64,8 +68,27 @@ if (isset($_REQUEST["submit"])) {
 
 <section class="bg-dark text-white row justify-content-center" style="padding: 25px 75px 50px 75px;width: 100%;overflow: auto;margin-top:100px;";>
 
-    <h2 class="text-center mt-5">Foto del Menu</h2>
+    <h2 class="text-center mt-5">Nuevo Evento</h2>
     <form class="col-6 mt-5" method="post" action="#" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="nom">Nombre</label>
+            <input type="text" class="form-control" id="nom" name="nom" aria-describedby="nomHelp" required/>
+            <small id="nomHelp" class="form-text text-white">Nombre del evento.</small>
+        </div>
+        <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date" class="form-control" id="fecha" name="fecha" aria-describedby="fechaHelp" required/>
+        </div>
+        <div class="form-group">
+            <label for="desc_c">Descripcion Corta</label>
+            <textarea class="form-control" id="desc_c" rows="3" name="desc_c" required></textarea>
+            <small id="generoHelp" class="form-text text-white">Descripcion corta del evento</small>
+        </div>
+        <div class="form-group">
+            <label for="desc_l">Descripcion Larga</label>
+            <textarea class="form-control" id="desc_l" rows="7" name="desc_l" required></textarea>
+            <small id="fechaHelp" class="form-text text-white">Descripcion larga del evento</small>
+        </div>
         <div>
             <label for="img" class="form-label">Imagen para evento</label>
             <input class="form-control form-control-lg" id="img" name="img" type="file" required>
