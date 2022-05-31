@@ -3,7 +3,7 @@ include("../components/admin_nav.php");
 require_once("../bbdd/conex.php");
 
 $bd = new conex();
-
+$ejecutar = true;
 if (isset($_REQUEST["submit"])) {
 
     $target_dir = "../assets/img/eventos/";
@@ -19,28 +19,32 @@ if (isset($_REQUEST["submit"])) {
     } else {
       echo "File is not an image.";
       $uploadOk = 0;
+      $ejecutar = false;
     }
     // Check if file already exists
     if (file_exists($target_file)) {
         echo "Sorry, file already exists.";
         $uploadOk = 0;
+        $ejecutar = false;
     }
-    
     // Check file size
-    if ($_FILES["img"]["size"] > 500000) {
+    if ($_FILES["img"]["size"] > 5000000000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
+        $ejecutar = false;
     }
     
     // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
+        $ejecutar = false;
     }
     
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
+        $ejecutar = false;
 
     // if everything is ok, try to upload file
     } else {
@@ -48,19 +52,20 @@ if (isset($_REQUEST["submit"])) {
         echo "The file ". htmlspecialchars( basename( $_FILES["img"]["name"])). " has been uploaded.";
         } else {
         echo "Sorry, there was an error uploading your file.";
+        $ejecutar = false;
         }
     }
 
-    $nombre = $_REQUEST["nom"];
-    $fecha = $_REQUEST["fecha"];
-    $desc_c = $_REQUEST["desc_c"];
-    $desc_l = $_REQUEST["desc_l"];
-
-    $sql = "INSERT INTO eventos (NOMBRE,FECHA,DESC_CORTA,DESC_LARGA,IMAGEN) VALUES ('$nombre', '$fecha', '$desc_c', '$desc_l', 'assets/img/eventos$file_name')";
     
-    if ($bd->ExecSQL($sql)) {
+        $nombre = $_REQUEST["nom"];
+        $fecha = $_REQUEST["fecha"];
+        $desc_c = $_REQUEST["desc_c"];
+        $desc_l = $_REQUEST["desc_l"];
+
+        $sql = "INSERT INTO eventos (NOMBRE,FECHA,DESC_CORTA,DESC_LARGA,IMAGEN) VALUES ('$nombre', '$fecha', '$desc_c', '$desc_l', 'assets/img/eventos/$file_name')";
         
-    }
+        $bd->ExecSQL($sql);
+    
 }
 
 ?>

@@ -3,7 +3,7 @@ include("../components/admin_nav.php");
 require_once("../bbdd/conex.php");
 
 $bd = new conex();
-
+$ejecutar = true;
 if (isset($_REQUEST["submit"])) {
 
     $target_dir = "../assets/img/menu/";
@@ -19,43 +19,42 @@ if (isset($_REQUEST["submit"])) {
     } else {
       echo "File is not an image.";
       $uploadOk = 0;
+      $ejecutar = false;
     }
     // Check if file already exists
     if (file_exists($target_file)) {
         echo "Sorry, file already exists.";
         $uploadOk = 0;
+        $ejecutar = false;
     }
-    
     // Check file size
-    if ($_FILES["img"]["size"] > 500000) {
+    if ($_FILES["img"]["size"] > 5000000000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
+        $ejecutar = false;
     }
     
     // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
+        $ejecutar = false;
     }
     
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
+        $ejecutar = false;
 
     // if everything is ok, try to upload file
     } else {
-        if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["img"]["name"])). " has been uploaded.";
+        $nom = "../assets/img/menu/menu.jpeg";
+        if (move_uploaded_file($_FILES["img"]["tmp_name"], $nom)) {
+            echo "The file ". htmlspecialchars( basename( $_FILES["img"]["name"])). " has been uploaded.";
         } else {
         echo "Sorry, there was an error uploading your file.";
+        $ejecutar = false;
         }
-    }
-
-
-    $sql = "INSERT INTO menu (IMAGEN) VALUES ('assets/img/eventos$file_name')";
-    
-    if ($bd->ExecSQL($sql)) {
-        
     }
 }
 

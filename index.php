@@ -106,8 +106,7 @@
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/1.jpg" title="Project Name">
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/1.jpg" alt="..." />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <div class="project-name">Jardin</div>
                             </div>
                         </a>
                     </div>
@@ -115,8 +114,7 @@
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/2.jpg" title="Project Name">
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/2.jpg" alt="..." />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <div class="project-name">Terraza</div>
                             </div>
                         </a>
                     </div>
@@ -124,8 +122,7 @@
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/3.jpg" title="Project Name">
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/3.jpg" alt="..." />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <div class="project-name">Dormitorio de Vinos</div>
                             </div>
                         </a>
                     </div>
@@ -133,8 +130,7 @@
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/4.jpg" title="Project Name">
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/4.jpg" alt="..." />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <div class="project-name">Salon</div>
                             </div>
                         </a>
                     </div>
@@ -142,8 +138,7 @@
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/5.jpg" title="Project Name">
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/5.jpg" alt="..." />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <div class="project-name">Zona para niños</div>
                             </div>
                         </a>
                     </div>
@@ -151,8 +146,7 @@
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/6.jpg" title="Project Name">
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/6.jpg" alt="..." />
                             <div class="portfolio-box-caption p-3">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <div class="project-name">Parking</div>
                             </div>
                         </a>
                     </div>
