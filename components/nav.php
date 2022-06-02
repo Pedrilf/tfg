@@ -18,7 +18,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body style="height: 100%;">
+    <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-light" id="mainNav" style="height:10%;">
             <div class="container px-4 px-lg-5">

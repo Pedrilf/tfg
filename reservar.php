@@ -2,6 +2,8 @@
 include("components/nav.php");
 include("bbdd/conex.php");
 $bd = new conex();
+
+$hoy = date("Y-m-d");
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script>
@@ -10,18 +12,24 @@ $bd = new conex();
         window.location.href = "index.php";
     }
 </script>
-<div style="margin:auto;margin-top:100px;width:90%;height: 75%;">
-    <form method="POST">
+
+<div style="margin:auto;border-radius: 15px; width: 90%;margin-top: 125px;background-color: rgba(212, 252, 223,0.7);display: flex;flex-wrap: wrap;">
+    <p style="word-break:break-all;padding: 15px;">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
+</div>
+
+<!-- FORMULARIO DE RESERVA -->
+<div style="margin:auto;margin-top:25px;width:90%;overflow: auto;padding: 25px 0 25px 0;">
+    <form method="POST" name="formReserva">
         <div style="width: 98%;overflow: auto;">
             <div style="float: left;width: 50.7%;height: 100%;border-right: 3px solid black;padding: 30px;">
                 <label for="fecha">Fecha</label>
-                <input type="date" class="form-control" id="fecha" name="fecha" placeholder="DD/MM/YYYY" required>
+                <input type="date" class="form-control" id="fecha" name="fecha" min="<?php echo $hoy ?>" placeholder="DD/MM/YYYY" required>
                 <br>
                 <label for="NPersonas">Nº Personas</label>
-                <input type="number" class="form-control" id="NPersonas" name="NPersonas" placeholder="Numero de personas" required>
+                <input type="number" class="form-control" id="NPersonas" name="NPersonas" placeholder="Numero de personas" min="1" required>
                 <br>
                 <label for="hora">Hora</label>
-                <input type="time" class="form-control" id="hora" name="hora" placeholder="Hora para la reserva" required>
+                <input type="time" class="form-control" id="hora" name="hora" placeholder="Hora para la reserva" min="13:00" max="16:00" required>
             </div>
             <div style="float: left;width: 49%;padding: 30px;height: 100%;">
                 <label for="nom">Nombre y Apellidos</label>
@@ -42,24 +50,24 @@ $bd = new conex();
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmacion de reserva</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmacion de reserva</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Se hara una solicitud de reserva a espera de ser procesada. En caso de ser denegada o aceptada se le notificara mediante un correo electronico a la direccion proporcionada.<br><br>
+                    Desea continuar?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Hacer Reserva</button>
+                </div>
+                </div>
             </div>
-            <div class="modal-body">
-                Se hara una solicitud de reserva a espera de ser procesada. En caso de ser denegada o aceptada se le notificara mediante un correo electronico a la direccion proporcionada.<br><br>
-                Desea continuar?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" type="submit" name="submit">Hacer Reserva</button>
-            </div>
-            </div>
-        </div>
         </div>
     </form>
 </div>
