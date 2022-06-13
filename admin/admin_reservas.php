@@ -2,6 +2,10 @@
 include("../components/admin_nav.php");
 require_once("../bbdd/conex.php");
 
+if (!$_SESSION['loged']) {
+    header("Location: index.php");
+}
+
 $bd = new conex();
 
 $sql = "SELECT * FROM reservas WHERE ESTADO = 'Pendiente' ORDER BY FECHA";
@@ -166,7 +170,7 @@ if (isset($_REQUEST["denegar"])) {
                 ?>
                     <tr>
                         <th scope="row"><?php echo $row->ID_RESERVA ?></th> 
-                        <td><?php echo $row->NOMBRE ?></td> 
+                        <td><?php echo nl2br($row->NOMBRE) ?></td> 
                         <td><?php echo $row->FECHA ?></td> 
                         <td><?php echo $row->NUM_PERSONAS ?> </td> 
                         <td><?php echo $row->CORREO ?></td> 

@@ -38,12 +38,12 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Your Favorite Place for Free Bootstrap Themes</h1>
+                        <h1 class="text-white font-weight-bold">Reestaurante Casa Javi</h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
-                        <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+                        <p class="text-white-75 mb-5">Desde 1990 intentamos hacer feliz a los clientes a través de nuestra cocina y un entorno agradable con un trato familiar.</p>
+                        <a class="btn btn-primary btn-xl" href="#about">Más informacion</a>
                     </div>
                 </div>
             </div>
@@ -53,9 +53,12 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">We've got what you need!</h2>
+                        <h2 class="text-white mt-0">Tenemos lo que necesitas!</h2>
                         <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
+                        <p class="text-white-75 mb-4">
+                        Desde nuestra cocina intentamos elaborar unos platos mimando el producto local y de temporada respetándolos al máximo.
+                        En sala tratamos que el cliente esté a gusto y disfrute del momento que pasa sentado a nuestra mesa.
+                        </p>
                         <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
                     </div>
                 </div>
@@ -70,29 +73,25 @@
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Sturdy Themes</h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                            <h3 class="h4 mb-2">Productos de temporada y km 0</h3>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Up to Date</h3>
-                            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+                            <h3 class="h4 mb-2">Amplios y luminosos salones</h3>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Ready to Publish</h3>
-                            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
+                            <h3 class="h4 mb-2">Entorno ideal para celebrar eventod</h3>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Made with Love</h3>
-                            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
+                            <h3 class="h4 mb-2">Acogedores jardines con espacios de sombra bajo los árboles</h3>
                         </div>
                     </div>
                 </div>
@@ -114,7 +113,7 @@
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/2.jpg" title="Project Name">
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/2.jpg" alt="..." />
                             <div class="portfolio-box-caption">
-                                <div class="project-name">Terraza</div>
+                                <div class="project-name">Acristalado</div>
                             </div>
                         </a>
                     </div>

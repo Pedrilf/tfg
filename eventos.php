@@ -7,10 +7,13 @@ $bd = new conex();
 
 $sql = "SELECT * FROM eventos";
 $resultado = $bd->ExecSQL($sql);
-while ($row = $bd->SigReg($resultado)) {
 ?>
 <br><br>
-<div class="container bcontent" style="margin-top:100px;">
+<div style="margin-top:100px;"></div>
+<?php
+while ($row = $bd->SigReg($resultado)) {
+?>
+<div class="container bcontent" style="margin-top:50px;">
     <h2><?php echo $row->NOMBRE ?></h2>
     <hr/>
     <div class="card" style="width: 100%;">

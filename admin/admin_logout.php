@@ -1,6 +1,10 @@
 <?php
 include("../components/admin_nav.php");
 
+if (!$_SESSION['loged']) {
+    header("Location: index.php");
+}
+
 if (isset($_REQUEST['si'])) {
     $_SESSION['loged'] = false;
     session_destroy();

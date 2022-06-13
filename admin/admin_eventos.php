@@ -2,6 +2,10 @@
 include("../components/admin_nav.php");
 require_once("../bbdd/conex.php");
 
+if (!$_SESSION['loged']) {
+    header("Location: index.php");
+}
+
 $bd = new conex();
 $ejecutar = true;
 if (isset($_REQUEST["submit"])) {

@@ -2,6 +2,10 @@
 include("../components/admin_nav.php");
 require_once("../bbdd/conex.php");
 
+if (!$_SESSION['loged']) {
+    header("Location: index.php");
+}
+
 $bd = new conex();
 $ejecutar = true;
 if (isset($_REQUEST["submit"])) {
@@ -61,16 +65,16 @@ if (isset($_REQUEST["submit"])) {
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<section class="bg-dark text-white row justify-content-center" style="padding: 25px 75px 50px 75px;width: 100%;overflow: auto;margin-top:100px;";>
+<section class="bg-dark text-white row justify-content-center" style="padding: 25px 75px 50px 75px;width: 100%;overflow: auto;margin-top:100px;height:850px;";>
 
     <h2 class="text-center mt-5">Foto del Menu</h2>
-    <form class="col-6 mt-5" method="post" action="#" enctype="multipart/form-data">
+    <form class="" method="post" action="#" enctype="multipart/form-data">
         <div>
             <label for="img" class="form-label">Imagen para evento</label>
             <input class="form-control form-control-lg" id="img" name="img" type="file" required>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary" name="submit">Dar de Alta</button>
+        <button type="submit" class="btn btn-primary" name="submit">Subir menu</button>
     </form>
 </section>
 
