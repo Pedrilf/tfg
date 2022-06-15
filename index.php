@@ -59,7 +59,7 @@
                         Desde nuestra cocina intentamos elaborar unos platos mimando el producto local y de temporada respetándolos al máximo.
                         En sala tratamos que el cliente esté a gusto y disfrute del momento que pasa sentado a nuestra mesa.
                         </p>
-                        <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
+                        <a class="btn btn-light btn-xl" href="#services">Comencemos!</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">At Your Service</h2>
+                <h2 class="text-center mt-0">Tenemos lo que necesitas</h2>
                 <hr class="divider" />
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-3 col-md-6 text-center">
@@ -113,7 +113,7 @@
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/2.jpg" title="Project Name">
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/2.jpg" alt="..." />
                             <div class="portfolio-box-caption">
-                                <div class="project-name">Acristalado</div>
+                                <div class="project-name">Terraza</div>
                             </div>
                         </a>
                     </div>
