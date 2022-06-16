@@ -31,7 +31,7 @@ $bd = new conex();
   <div id="formContent">
 
     <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+      <img src="../assets/img/icon.ico" id="icon" alt="User Icon" />
     </div>
 
     <form method="POST">

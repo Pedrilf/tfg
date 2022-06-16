@@ -23,6 +23,11 @@ class conex {
     {
         return mysqli_fetch_object($Id_Sql);
     }
+
+    function NumRegs($Id_Sql)
+    {
+        return mysqli_num_rows($Id_Sql);
+    } // FIN NumRegs
 }
 
     

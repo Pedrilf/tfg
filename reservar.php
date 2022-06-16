@@ -84,7 +84,7 @@ if (isset($_REQUEST["submit"])) {
     $numTel = $_REQUEST["tel"];
     $correo = $_REQUEST["email"];
 
-    $sql = "INSERT INTO reservas (NOMBRE,FECHA,NUM_PERSONAS,CORREO,TELEFONO,ESTADO) VALUES ('$nom','$fecha',$numPersonas,'$correo','$numTel','Pendiente')";
+    $sql = "INSERT INTO reservas (NOMBRE,FECHA,NUM_PERSONAS,CORREO,TELEFONO,ESTADO,HORA) VALUES ('$nom','$fecha',$numPersonas,'$correo','$numTel','Pendiente','$hora')";
     if ($bd->ExecSQL($sql)) {
         echo '<script>jsFunction();</script>';
     } else {

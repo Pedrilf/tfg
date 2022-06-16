@@ -1,6 +1,13 @@
 <?php
 include("../components/admin_nav.php");
 require_once("../bbdd/conex.php");
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../PHPMailer/Exception.php';
+require '../PHPMailer/PHPMailer.php';
+require '../PHPMailer/SMTP.php';
 
 if (!$_SESSION['loged']) {
     header("Location: index.php");
@@ -19,6 +26,64 @@ $nPersonas = "";
 $email = "";
 $telefono = "";
 $estado = "";
+
+function enviarMail($inf) {
+     ob_start(); ?>
+        <div>
+        <span>No responder a este correo</span>
+    <h2>Restaurante Casa Javi</h2>
+
+    <h4>Le informamos de que se solicitud de reserva ha sido aceptada.</h4>
+
+    <h4>Informacion de la reserva:</h4>
+    <h5>
+        <ul>
+            <li>Nombre: <?= $inf->NOMBRE ?></li>
+            <li>Correo: <?= $inf->CORREO ?></li>
+            <li>Telefono: <?= $inf->TELEFONO ?></li>
+            <li>Fecha: <?= $inf->FECHA ?></li>
+            <li>Hora: <?= $inf->HORA ?></li>
+            <li>Nº de personas: <?= $inf->NUM_PERSONAS ?></li>
+        </ul>
+    </h5>
+
+    <h4>
+        Para consltar cuanquier duda ponganse en contacto con nosotros a traves de nuestros numeros de telefono: <br>
+        &nbsp&nbsp Telefono fijo: 914 14 15 36 <br>
+        &nbsp&nbsp Telefono movil: 689 11 69 11
+    </h4>
+
+    <h3>Gracias por contar con nosotros!</h3>
+</div>
+    <?php $cuerpo = ob_get_clean();
+    $mail = new PHPMailer(true);
+
+    try {
+        //Server settings
+        $mail->SMTPDebug = 0;                      //Enable verbose debug output -> SMTP::DEBUG_SERVER
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = 'nachocasajavi@gmail.com';                     //SMTP username
+        $mail->Password   = 'fuzngnxuctplawah';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+        //Recipients
+        $mail->setFrom('nachocasajavi@gmail.com', 'RestauranteCasaJavi');
+        $mail->addAddress($inf->CORREO);     //Add a recipient
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Solicitud de reserva '.$inf->ESTADO;
+        $mail->Body    = $cuerpo;
+
+        $mail->send();
+        //echo 'Message has been sent';
+    } catch (Exception $e) {
+        //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
 
 if (isset($_REQUEST["filtrar"])) {
     $filtrar = false;
@@ -70,18 +135,14 @@ if (isset($_REQUEST["aceptar"])) {
     $id = $_REQUEST["aceptar"];
     $query = "UPDATE reservas SET ESTADO = 'Aceptada' where ID_RESERVA = $id";
     if ($bd->ExecSQL($query)) {
-        echo "Reserva Aceptada con exito";
+        //echo "Reserva Aceptada con exito";
     } else {
-        echo "Ha ocurrido un problema";
+        //echo "Ha ocurrido un problema";
     }
 
     //ENVIA UN EMAIL DE CONFIRMACION
-    $destination = "minipedri@me.com";
-    $title = "Prueba 1 Correo";
-    $body = "Solicitud de reserva aceptada";
-    $from = "From: minipedri02@gmail.com";
-
-    mail($destination, $title, $body, $from);
+    $infReserva = $bd->SigReg($bd->ExecSQL("SELECT * FROM reservas WHERE ID_RESERVA = $id"));
+    enviarMail($infReserva);
 }
 
 //COMPRUEBA SI HAS PULSADO EL BOTON DENEGAR
@@ -89,10 +150,10 @@ if (isset($_REQUEST["denegar"])) {
     //ACTUALIZA EL ESTADO DE LA SOLICITUD DE RESERVA
     $id = $_REQUEST["denegar"];
     $query = "UPDATE reservas SET ESTADO = 'Denegada' where ID_RESERVA = $id";
-    if (mysqli_query($conn, $query)) {
-        echo "Reserva Denegada con exito";
+    if ($bd->ExecSQL($query)) {
+        //echo "Reserva Denegada con exito";
     } else {
-        echo "Ha ocurrido un problema";
+        //echo "Ha ocurrido un problema";
     }
 
     //ENVIA UN EMAIL DE CONFIRMACION
@@ -101,7 +162,11 @@ if (isset($_REQUEST["denegar"])) {
     $body = "Solicitud de reserva cancelada";
     $from = "From: minipedri02@gmail.com";
 
-    mail($destination, $title, $body, $from);
+    if (mail($destination, $title, $body, $from)) {
+        echo "Si";
+    } else {
+        echo "No";
+    }
 }
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -133,10 +198,10 @@ if (isset($_REQUEST["denegar"])) {
                 <br>
                 <label for="estado">Estado</label>
                 <select class="form-select" id="estado" name="estado" value="<?php echo $estado ?>" placeholder="Estado de reserva">
+                    <option value="'Pendiente'">Pendiente</option>
                     <option value="'Aceptada' OR ESTADO = 'Pendiente' OR ESTADO = 'Denegada'">Todas</option>
                     <option value="'Aceptada'">Aceptada</option>
                     <option value="'Denegada'">Denegada</option>
-                    <option value="'Pendiente'" selected>Pendiente</option>
                 </select>
                 <br>
             </div>
@@ -157,6 +222,7 @@ if (isset($_REQUEST["denegar"])) {
                 <th scope="col">Id Reserva</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Fecha</th>
+                <th scope="col">Hora</th>
                 <th scope="col">Numero Personas</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Telefono</th>
@@ -172,6 +238,7 @@ if (isset($_REQUEST["denegar"])) {
                         <th scope="row"><?php echo $row->ID_RESERVA ?></th> 
                         <td><?php echo nl2br($row->NOMBRE) ?></td> 
                         <td><?php echo $row->FECHA ?></td> 
+                        <td><?php echo $row->HORA ?></td>
                         <td><?php echo $row->NUM_PERSONAS ?> </td> 
                         <td><?php echo $row->CORREO ?></td> 
                         <td><?php echo $row->TELEFONO ?></td> 
